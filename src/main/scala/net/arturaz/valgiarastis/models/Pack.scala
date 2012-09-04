@@ -25,8 +25,10 @@ case class Pack(amount: Int, rounding: String) {
     else if (isRoundingDown) "↓"
     else "↕"
 
+  def coef(total: Float) = total / amount
+
   def packs(total: Float) = {
-    val value = total / amount
+    val value = coef(total)
 
     if (isRoundingUp) value.ceil.toInt
     else if (isRoundingDown) value.floor.toInt

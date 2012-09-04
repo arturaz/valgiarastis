@@ -43,13 +43,17 @@ case class Totals(
           bruttoTd = bruttoTd.copy(
             child = bruttoTd.child :+ <span>{pack.sign}= {
               pack.round(bruttoTotal)} ({pack.packs(bruttoTotal)
-            } packs)</span>
+            } packs x {pack.amount}, coef: {
+              "%.2f".format(pack.coef(bruttoTotal))
+            })</span>
           )
       }
 
       rows = rows :+ <tr>
         <td>{name}</td>
         {bruttoTd}
+        <td>{s(totalPerPerson, kilograms = true, partPrecision = 5,
+          totalPrecision = 2)}</td>
       </tr>
 
       entry.subparts.foreach { pair =>
@@ -57,6 +61,8 @@ case class Totals(
         rows = rows :+ <tr class="details">
           <td>{pair.source.name}</td>
           <td>{s(i.bruto)}</td>
+          <td>{s(i.bruto, kilograms=true, partPrecision = 5,
+            totalPrecision = 2)}</td>
         </tr>
       }
     }
@@ -82,6 +88,7 @@ case class Totals(
           <tr style="font-weight: bold">
             <td width="400px">Name</td>
             <td>Brutto (g)</td>
+            <td>Brutto (kg)</td>
           </tr>
           {rows}
         </table>
@@ -91,12 +98,18 @@ case class Totals(
     "<!DOCTYPE HTML>\n" + html
   }
 
-  private[this] def s(value: Float) =
+  private[this] def s(
+    value: Float, kilograms: Boolean=false, partPrecision: Int=3,
+    totalPrecision: Int=1
+  ) = {
+    val usedValue = if (kilograms) value / 1000 else value
+
     <span>
-      {"%.3f".format(value)} * {peopleCount} = <b>{
-        "%.1f".format(value * peopleCount)
+      {("%."+partPrecision+"f").format(usedValue)} * {peopleCount} = <b>{
+        ("%."+totalPrecision+"f").format(usedValue * peopleCount)
       }</b>
     </span>
+  }
 }
 
 object OrderCalculator {

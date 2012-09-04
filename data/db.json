@@ -1,8 +1,8 @@
 {
   "packs": {
-    "Aliejus": {"amount": 500, "rounding": "up"},
-    "Česnakas": {"amount": 50, "rounding": "up"},
-    "Kopūstai": {"amount": 1400, "rounding": "up"}
+    "Virta dešra": {"amount": 200, "rounding": "up"},
+    "Žalieji žirneliai": {"amount": 680, "rounding": "up"},
+    "Morkos": {"amount": 680, "rounding": "avg"}
   },
   "recipes": {
     "kopustu salotos": {

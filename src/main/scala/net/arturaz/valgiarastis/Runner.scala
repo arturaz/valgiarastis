@@ -48,11 +48,15 @@ object Runner {
 
     val basename = menuFile.replaceAll("\\.json$", "")
 
-    val htmlFile = new File("%s-prediction.html".format(basename))
+    val htmlFile = new File(
+      "%s-prediction-%d.html".format(basename, totals.peopleCount)
+    )
     println("Writing orders to '"+htmlFile.getPath+"'...")
     writeFile(htmlFile, totals.toHtml)
 
-    val jsonFile = new File("%s-prediction.json".format(basename))
+    val jsonFile = new File(
+      "%s-prediction-%d.json".format(basename, totals.peopleCount)
+    )
     println("Writing orders JSON to '"+jsonFile.getPath+"'...")
     writeFile(jsonFile, Json.generate(totals))
 
@@ -87,8 +91,8 @@ Usage: java -jar valgiarastis.jar args
     java -jar valgiarastis.jar predict menu_file people_count
     I.e.: java -jar valgiarastis.jar predict data/menu_file.json 34
 
-  This generates data/menu_file-prediction.html (for viewing) and
-  data/menu_file-prediction.json (for correction mode).
+  This generates data/menu_file-prediction-34.html (for viewing) and
+  data/menu_file-prediction-34.json (for correction mode).
 
   Correction mode:
     java -jar valgiarastis.jar correct prediction_file new_people_count
