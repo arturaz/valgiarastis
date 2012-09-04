@@ -1,0 +1,12 @@
+# IDEA files
+.idea
+*.iml
+
+# Backups
+*~
+
+# SBT files
+target
+
+# Our files
+work

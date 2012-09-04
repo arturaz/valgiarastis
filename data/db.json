@@ -1,0 +1,24 @@
+{
+  "packs": {
+    "Aliejus": {"amount": 500, "rounding": "up"},
+    "Česnakas": {"amount": 50, "rounding": "up"},
+    "Kopūstai": {"amount": 1400, "rounding": "up"}
+  },
+  "recipes": {
+    "kopustu salotos": {
+      "name": "Šviežių kopustų salotos",
+      "ingredients": [
+        {"name": "Kopūstai", "bruto": 70},
+        {"name": "Morkos", "bruto": 20}
+      ]
+    },
+    "morku-cesnaku salotos": {
+      "name": "Morkų, česnakų salotos",
+      "ingredients": [
+        {"name": "Morkos", "bruto": 62},
+        {"name": "Česnakas", "bruto": 0.36},
+        {"name": "Aliejus", "bruto": 0.3}
+      ]
+    }
+  }
+}
